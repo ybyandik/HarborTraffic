@@ -1,0 +1,41 @@
+default_harbor: port_adriano
+
+location:
+  name: Port Adriano
+  latitude: 39.5075
+  longitude: 2.5792
+  timezone: Europe/Madrid
+
+api:
+  forecast_url: "https://api.open-meteo.com/v1/forecast"
+  marine_url: "https://marine-api.open-meteo.com/v1/marine"
+  timeout: 30
+  retry_attempts: 3
+  retry_delay: 5
+
+weather_params:
+  - temperature_2m
+  - precipitation
+  - weather_code
+  - visibility
+  - wind_speed_10m
+  - is_day
+  - wind_gusts_10m
+
+marine_params:
+  - wave_height
+
+kafka:
+  bootstrap_servers: localhost:9092
+  client_id: port-adriano-ingest
+  ship_topic: port-adriano-ship-events
+  weather_topic: port-adriano-weather-events
+  partitions: 3
+  replication_factor: 1
+
+weather_poll_interval: 600
+
+spark:
+  checkpoint_dir: data/spark/checkpoints/port_adriano
+  parquet_dir: data/parquet/port_adriano
+  trigger_seconds: 30

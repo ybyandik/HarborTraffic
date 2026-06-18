@@ -1,0 +1,12 @@
+harbor_id: port_adriano
+
+location:
+  name: Port Adriano
+  latitude: 39.5075
+  longitude: 2.5792
+  timezone: Europe/Madrid
+
+kafka:
+  client_id: port-adriano-ingest
+  ship_topic: port-adriano-ship-events
+  weather_topic: port-adriano-weather-events
